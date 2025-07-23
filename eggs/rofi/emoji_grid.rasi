@@ -1,0 +1,89 @@
+configuration {
+    modi:                        "drun";
+    show-icons:                  false;
+}
+
+@theme "~/.config/rofi/theme.rasi"
+
+* {
+  background-color: transparent;
+}
+
+window {
+    width:                       30em;
+    height:                      30em;
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0em;
+    padding:                     0em;
+    border-color:                @main-br;
+    background-color:            rgba(0,0,0,0.6);
+    border: 2px;
+    border-radius: 1em;
+}
+mainbox {
+    enabled:                     true;
+    spacing:                     0.5em;
+    padding:                     0.5em;
+    orientation:                 vertical;
+    background-color:            transparent;
+}
+
+inputbar {
+    enabled:                     true;
+    height:                      4em;
+    padding:                     0em;
+    children:                    [ "entry" ];
+    background-color:            @main-bg;
+    expand:                      false;
+}
+entry {
+    enabled:                     true;
+    padding:                     1em;
+    text-color:                  @main-fg;
+    background-color:            transparent;
+}
+
+textbox {
+  vertical-align:   0.5;
+  horizontal-align: 0.5;
+  text-color: @main-fg;
+}
+
+listview {
+  columns:       9;
+  lines:         7;
+  cycle:         true;
+  dynamic:       true;
+  layout:        vertical;
+  flow:          horizontal;
+  reverse:       false;
+  fixed-height:  true;
+  fixed-columns: true;
+}
+
+element {
+  orientation: vertical;
+    enabled:                     true;
+    padding:                     0.5em;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+  cursor: pointer;
+}
+
+
+element-text {
+  vertical-align:   0.5;
+  horizontal-align: 0.5;
+  font:            "FiraCode Nerd Font 24";
+}
+

@@ -1,0 +1,6 @@
+"custom/cava": {
+	"format": "{}",
+	"exec": "cava.sh",
+	"restart-interval": 1,
+	"hide-empty": false
+},

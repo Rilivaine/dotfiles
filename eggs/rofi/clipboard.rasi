@@ -1,0 +1,85 @@
+// Config //
+configuration {
+    modi:                        "drun";
+    show-icons:                  false;
+}
+
+@theme "~/.config/rofi/theme.rasi"
+
+
+// Main //
+window {
+    width:                       30em;
+    height:                      30em;
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0em;
+    padding:                     0em;
+    border-color:                @main-br;
+    background-color:            rgba(0,0,0,0.6);
+}
+mainbox {
+    enabled:                     true;
+    spacing:                     0em;
+    padding:                     0.5em;
+    orientation:                 vertical;
+    children:                    [ "inputbar" , "listview" ];
+    background-color:            transparent;
+}
+
+
+// Inputs //
+inputbar {
+    enabled:                     true;
+    height:                      4em;
+    padding:                     0em;
+    children:                    [ "entry" ];
+    background-color:            @main-bg;
+    expand:                      false;
+}
+entry {
+    enabled:                     true;
+    padding:                     1em;
+    text-color:                  @main-fg;
+    background-color:            transparent;
+}
+
+listview {
+    enabled:                     true;
+    spacing:                     0em;
+    padding:                     0em;
+    orientation:                 vertical;
+    padding:                     0.5em;
+    columns:                     1;
+    lines:                       12; 
+    cycle:                       true;
+    fixed-height:                true;
+    fixed-columns:               false;
+    expand:                      false;
+    cursor:                      "default";
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+// Elements //
+element {
+    enabled:                     true;
+    padding:                     0.5em;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+}
+element-text {
+    vertical-align:              0.0;
+    horizontal-align:            0.0;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+

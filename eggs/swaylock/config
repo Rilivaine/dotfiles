@@ -1,0 +1,54 @@
+# main settings 
+daemonize
+clock
+screenshot
+ignore-empty-password
+indicator
+grace-no-mouse
+
+# screen effects
+effect-blur=15x15
+effect-vignette=1:1
+color=00000080
+grace=3
+fade-in=0.3
+
+# font
+font="Inter"
+
+# indicator info
+datestr=%a, %B %e
+timestr=%I:%M %p
+
+# indicator base settings
+indicator-radius=250
+indicator-thickness=25
+separator-color=00000000
+text-caps-lock-color=""
+
+# indicator idle
+line-color=1f1d2e
+ring-color=440171
+inside-color=1f1d2e
+text-color=e0def4
+key-hl-color=750000 # when entering a password
+
+# indicator verification
+line-ver-color=6c6faf
+ring-ver-color=6c6faf
+inside-ver-color=1a1a2b
+text-ver-color=dcd7ff
+
+# indicator wrong
+ring-wrong-color=af5f6c
+text-wrong-color=af5f6c
+inside-wrong-color=1a1a2b
+line-wrong-color=1a1a2b
+
+# indicator clear
+inside-clear-color=1a1a2b
+text-clear-color=dcd7ff
+ring-clear-color=5f9c8f
+line-clear-color=1a1a2b
+bs-hl-color=31748f # when pressing backspace or esc
+

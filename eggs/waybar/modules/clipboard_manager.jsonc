@@ -1,0 +1,11 @@
+    "custom/clipboard_manager": {
+        "format": "{}",
+        "rotate": ${r_deg},
+        "exec": "echo ; echo 󰅇 clipboard history",
+        "on-click": "sleep 0.1 && clipboard_manager.sh c",
+        "on-click-right": "sleep 0.1 && clipboard_manager.sh d",
+        "on-click-middle": "sleep 0.1 && clipboard_manager.sh w",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+

@@ -1,0 +1,40 @@
+/** Global *******************************************/
+*{
+	all: unset;
+	font-family: feather;
+	font-family: Iosevka;
+}
+
+/** Background ***************************************/
+.bg {
+	backgroun-color: #474D59;
+	opacity: 0.5;
+}
+
+/** Generic window ***********************************/
+.genwin {
+	background-color: #2E3440;
+	border-radius: 16px;
+  opacity: 0;
+}
+
+/** Power buttons ***************************************/
+.btn_logout, .btn_lock, .btn_reboot, .btn_poweroff {
+	font-size : 48px;
+	font-weight : bold;
+}
+
+.btn_logout {
+	color: #BF616A;
+}
+.btn_lock {
+	color: #A3BE8C;
+}
+.btn_reboot {
+	color: #EBCB8B;
+}
+.btn_poweroff {
+	color: #88C0D0;
+}
+
+/** EOF *************************************************/

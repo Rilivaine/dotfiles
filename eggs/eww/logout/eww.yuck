@@ -1,0 +1,50 @@
+;; background
+(defwidget bg [] 
+	(box :class "bg")
+)
+
+;; power buttons
+(defwidget logout [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(button :class "btn_logout" :onclick "openbox --exit" "")))
+(defwidget lock [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(button :class "btn_lock" :onclick "swaylock" :style "background-image: url('icons/lock_black.png');")))
+(defwidget reboot [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
+(defwidget poweroff [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(button :class "btn_poweroff" :onclick "systemctl poweroff" "")))
+
+
+
+;; background
+(defwindow background
+  :stacking "fg" :focusable "false" :monitor "eDP-1"
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "100%")
+					(bg))
+
+;; logout
+(defwindow logout :stacking "fg" :focusable "false" :monitor "eDP-1"
+	    :geometry (geometry :x 1445 :y 150 :width 155 :height 155)
+					(logout))
+
+;; lock
+(defwindow lock :stacking "fg" :focusable "false" :monitor "eDP-1"
+	    :geometry (geometry :x 1615 :y 150 :width 155 :height 155)
+					(lock))
+
+;; reboot
+(defwindow reboot :stacking "fg" :focusable "false" :monitor "eDP-1"
+	    :geometry (geometry :x 1445 :y 320 :width 155 :height 155)
+					(reboot))
+
+;; poweroff
+(defwindow poweroff :stacking "fg" :focusable "false" :monitor "eDP-1"
+	    :geometry (geometry :x 1615 :y 320 :width 155 :height 155)
+					(poweroff))

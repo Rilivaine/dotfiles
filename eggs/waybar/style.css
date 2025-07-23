@@ -1,0 +1,376 @@
+window.bottom *,
+tooltip {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 10px;
+}
+
+@import "theme.css";
+
+window.bottom#waybar {
+    background: @bar-bg;
+}
+
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 10px;
+    border-width: 0px;
+}
+
+.bottom #workspaces button {
+    box-shadow: none;
+	  text-shadow: none;
+    color: @main-fg;
+    animation: ws_normal 20s ease-in-out 1;
+}
+
+.bottom #workspaces button.active {
+    color: @wb-act-fg;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+}
+
+.bottom #workspaces button.empty {
+    background: @wb-emt-bg;
+    color: @wb-emt-fg;
+}
+
+.bottom #workspaces button.urgent {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+    border-radius: 12px;
+}
+
+.bottom #workspaces button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.bottom #taskbar button {
+    box-shadow: none;
+	  text-shadow: none;
+    padding: 0px;
+    /* border-radius: 12px; */
+    /* margin-top: 4px; */
+    /* margin-bottom: 4px; */
+    margin-left: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-right: 0px;
+    color: @wb-color;
+    animation: tb_normal 20s ease-in-out 1;
+}
+
+.bottom #taskbar button.active {
+    color: @wb-act-color;
+    margin-left: 4px;
+    border-radius: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 4px;
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+    animation: tb_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.bottom #taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    animation: tb_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.bottom #tray menu * {
+    min-height: 16px
+}
+
+.bottom #tray menu separator {
+    min-height: 10px
+}
+
+.bottom #battery,
+.bottom #bluetooth,
+.bottom #custom-cava,
+.bottom #custom-clipboard_manager,
+.bottom #clock,
+.bottom #cpu,
+.bottom #custom-cpuinfo,
+.bottom #custom-gpuinfo,
+.bottom #custom-l_end,
+.bottom #idle_inhibitor,
+.bottom #custom-keybindhint,
+.bottom #keyboard-state,
+.bottom #language,
+.bottom #memory,
+.bottom #mpris,
+.bottom #network,
+.bottom #custom-notifications,
+.bottom #custom-power,
+.bottom #privacy,
+.bottom #pulseaudio,
+.bottom #custom-spotify,
+.bottom #taskbar,
+.bottom #custom-l_end,
+.bottom #custom-theme,
+.bottom #tray,
+.bottom #custom-updates,
+.bottom #custom-wallchange,
+.bottom #custom-wbar,
+.bottom #window,
+.bottom #workspaces,
+
+.bottom #custom-l_end,
+.bottom #custom-r_end,
+.bottom #custom-sl_end,
+.bottom #custom-sr_end,
+.bottom #custom-rl_end,
+.bottom #custom-rr_end {
+    color: @main-fg;
+    background: @main-bg;
+    opacity: 1;
+    margin: 5px 0px 5px 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.bottom #workspaces,
+.bottom #taskbar {
+    padding: 0px;
+}
+
+.bottom #custom-r_end {
+    border-radius: 0px 28px 28px 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.bottom #custom-l_end {
+    border-radius: 28px 0px 0px 28px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
+
+.bottom #custom-sr_end {
+    border-radius: 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.bottom #custom-sl_end {
+    border-radius: 0px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
+
+.bottom #custom-rr_end {
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.bottom #custom-rl_end {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
+window.top *,
+tooltip {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 10px;
+}
+
+@import "theme.css";
+
+window.top#waybar {
+    background: @bar-bg;
+}
+
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 10px;
+    border-width: 0px;
+}
+
+.top #workspaces button {
+    box-shadow: none;
+	  text-shadow: none;
+    color: @main-fg;
+    animation: ws_normal 20s ease-in-out 1;
+}
+
+.top #workspaces button.active {
+    color: @wb-act-fg;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+}
+
+.top #workspaces button.empty {
+    background: @wb-emt-bg;
+    color: @wb-emt-fg;
+}
+
+.top #workspaces button.urgent {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+    border-radius: 12px;
+}
+
+.top #workspaces button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.top #taskbar button {
+    box-shadow: none;
+	  text-shadow: none;
+    padding: 0px;
+    /* border-radius: 12px; */
+    /* margin-top: 4px; */
+    /* margin-bottom: 4px; */
+    margin-left: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-right: 0px;
+    color: @wb-color;
+    animation: tb_normal 20s ease-in-out 1;
+}
+
+.top #taskbar button.active {
+    color: @wb-act-color;
+    margin-left: 4px;
+    border-radius: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 4px;
+    border-top: 2px solid @wb-act-bg;
+    border-bottom: 2px solid @wb-act-bg;
+    animation: tb_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.top #taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    animation: tb_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+.top #tray menu * {
+    min-height: 16px
+}
+
+.top #tray menu separator {
+    min-height: 10px
+}
+
+.top #battery,
+.top #bluetooth,
+.top #custom-cava,
+.top #custom-clipboard_manager,
+.top #clock,
+.top #cpu,
+.top #custom-cpuinfo,
+.top #custom-gpuinfo,
+.top #custom-l_end,
+.top #idle_inhibitor,
+.top #custom-keybindhint,
+.top #keyboard-state,
+.top #language,
+.top #memory,
+.top #mpris,
+.top #network,
+.top #custom-notifications,
+.top #custom-power,
+.top #privacy,
+.top #pulseaudio,
+.top #custom-spotify,
+.top #taskbar,
+.top #custom-l_end,
+.top #custom-theme,
+.top #tray,
+.top #custom-updates,
+.top #custom-wallchange,
+.top #custom-wbar,
+.top #window,
+.top #workspaces,
+
+.top #custom-l_end,
+.top #custom-r_end,
+.top #custom-sl_end,
+.top #custom-sr_end,
+.top #custom-rl_end,
+.top #custom-rr_end {
+    color: @main-fg;
+    background: @main-bg;
+    opacity: 1;
+    margin: 5px 0px 5px 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.top #workspaces,
+.top #taskbar {
+    padding: 0px;
+}
+
+.top #custom-r_end {
+    border-radius: 0px 28px 28px 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.top #custom-l_end {
+    border-radius: 28px 0px 0px 28px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
+
+.top #custom-sr_end {
+    border-radius: 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.top #custom-sl_end {
+    border-radius: 0px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
+
+.top #custom-rr_end {
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 12px;
+    padding-right: 4px;
+}
+
+.top #custom-rl_end {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 12px;
+    padding-left: 4px;
+}
