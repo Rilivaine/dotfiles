@@ -10,8 +10,8 @@ paste_directly=0
 [ "$rofiScale" -eq "$rofiScale" ] 2>/dev/null || rofiScale=10
 r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
 
-hypr_border=12
-hypr_width=2
+hypr_border="$(hyprctl -j getoption decoration:rounding | jq ".int")"
+hypr_width="$(hyprctl -j getoption general:border_size | jq '.int')"
 wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ "$hypr_border" -eq 0 ] && echo "5" || echo "$hypr_border")
 
@@ -63,7 +63,7 @@ case "${main_action}" in
         full_text=$(echo "$selected_item")
         echo "$full_text" | cliphist decode | wl-copy
         if [ "$paste_directly" -eq 1 ]; then
-            wtype -M ctrl -P v -m ctrl
+            ydotool key 29:1 47:1 47:0 29:0
             notify-send "Pasted at cursor."
         else
             notify-send "Copied to clipboard."

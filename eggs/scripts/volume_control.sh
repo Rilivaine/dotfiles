@@ -58,6 +58,23 @@ notify_mute() {
     fi
 }
 
+check_player_active() {
+    # Return 1 if playerctl is missing or player is inactive
+    if ! command -v playerctl >/dev/null 2>&1; then
+        return 1
+    fi
+    # If specific player provided
+    if [ -n "$srce" ]; then
+        if ! playerctl --player="$srce" status >/dev/null 2>&1; then
+            return 1
+        fi
+    else
+        # No specific player, but check if any active player exists
+        [ -z "$(playerctl --list-all 2>/dev/null)" ] && return 1
+    fi
+    return 0
+}
+
 change_volume() {
     local action=$1
     local step=$2
@@ -86,7 +103,9 @@ change_volume() {
             vol=$new_vol
             ;;
         "playerctl")
-            current_vol=$(playerctl --player="$srce" volume | awk '{ printf "%.0f", $0 * 100 }')
+            check_player_active || exit 0
+            current_vol=$(playerctl --player="$srce" volume 2>/dev/null | awk '{ printf "%.0f", $0 * 100 }')
+            [ -z "$current_vol" ] && exit 0
             if [ "$action" = "i" ]; then
                 new_vol=$((current_vol + step))
             else
@@ -115,9 +134,13 @@ toggle_mute() {
             notify_mute
             ;;
         "playerctl")
+            check_player_active || exit 0
             local volume_file="/tmp/$(basename "$0")_last_volume_${srce:-all}"
-            if [ "$(playerctl --player="$srce" volume | awk '{ printf "%.2f", $0 }')" != "0.00" ]; then
-                playerctl --player="$srce" volume | awk '{ printf "%.2f", $0 }' > "$volume_file"
+            local current_vol=$(playerctl --player="$srce" volume 2>/dev/null | awk '{ printf "%.2f", $0 }')
+            [ -z "$current_vol" ] && exit 0
+
+            if [ "$current_vol" != "0.00" ]; then
+                echo "$current_vol" > "$volume_file"
                 playerctl --player="$srce" volume 0
             else
                 if [ -f "$volume_file" ]; then
@@ -167,7 +190,7 @@ while getopts "iop:st" opt; do
     case $opt in
         i) device="pamixer"; srce="--default-source"; nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}') ;;
         o) device="pamixer"; srce=""; nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}') ;;
-        p) device="playerctl"; srce="${OPTARG}"; nsink=$(playerctl --list-all | grep -w "$srce") ;;
+        p) device="playerctl"; srce="${OPTARG}"; nsink=$(playerctl --list-all 2>/dev/null | grep -w "$srce") ;;
         s) select_output "$(select_output | rofi -dmenu -config "${confDir}/rofi/notification.rasi")"; exit ;;
         t) toggle_output; exit ;;
         *) print_usage ;;

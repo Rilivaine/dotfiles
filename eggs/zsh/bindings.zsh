@@ -4,3 +4,10 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey "^[m" copy-earlier-word
 bindkey "^[." insert-last-word
 
+# Move by words with Ctrl+Left / Ctrl+Right
+bindkey '^[[1;5D' backward-word   # Ctrl+Left
+bindkey '^[[1;5C' forward-word    # Ctrl+Right
+
+# Home / End to start/end of line
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line

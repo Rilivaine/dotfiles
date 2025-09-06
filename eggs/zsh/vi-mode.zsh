@@ -1,32 +1,38 @@
 bindkey -v
-bindkey "^H" backward-kill-word
-bindkey "^[[3~" delete-char
-bindkey "^[[3;5~" kill-word
+
+# Backspace handling
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-kill-word
+bindkey -M vicmd '^?' backward-delete-char
+bindkey -M vicmd '^H' backward-kill-word
+
+# Delete key
+bindkey -M viins '^[[3~' delete-char
+bindkey -M viins '^[[3;5~' kill-word
+bindkey -M vicmd '^[[3~' delete-char
+bindkey -M vicmd '^[[3;5~' kill-word
+
 export KEYTIMEOUT=1
 
 WORDCHARS=''
 
-zle-line-init() {
+# Cursor shapes
+function zle-keymap-select {
+  case $KEYMAP in
+    vicmd)      echo -ne '\e[2 q' ;; # block
+    viins|main) echo -ne '\e[6 q' ;; # beam
+    *)          echo -ne '\e[2 q' ;; # fallback block
+  esac
+}
+
+# Also set correct cursor on startup
+function zle-line-init {
   zle -K viins
   echo -ne '\e[6 q'
 }
+
+zle -N zle-keymap-select
 zle -N zle-line-init
-
-delete_or_kill_line() {
-  if [[ -z $LBUFFER ]]; then
-    BUFFER=""        # remove entire line
-    CURSOR=0         # reset cursor
-  else
-    zle backward-delete-char
-  fi
-}
-zle -N delete_or_kill_line
-
-bindkey -M viins '^?' delete_or_kill_line
-bindkey -M viins '^H' delete_or_kill_line
-
-echo -ne '\e[6 q'
-preexec() { echo -ne '\e[6 q' ;}
 
 # in vi insert mode, bind Enter (CR) to insert a newline + indent
 bindkey -M viins $'\e\r' self-insert-unmeta

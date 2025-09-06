@@ -3,7 +3,7 @@
 {
 // sourced from header module //
 
-    "layer": "top",
+    "layer": "bottom",
     "name": "bottom",
     "output": [ "*" ],
     "position": "bottom",
@@ -21,12 +21,12 @@
         "format": " {}",
         "rotate": 0,
         "return-type": "json",
-        "on-click": "playerctl play-pause --player spotify",
+        "on-click": "toggle_spotify.sh",
         "on-click-right": "playerctl next --player spotify",
         "on-click-middle": "playerctl previous --player spotify",
         "on-scroll-up": "volume_control.sh -p spotify i",
         "on-scroll-down": "volume_control.sh -p spotify d",
-        "max-length": 45,
+        "max-length": 80,
         "escape": true,
         "tooltip": true
     },
@@ -70,7 +70,7 @@
 "pulseaudio": {
     "format": "{icon}  {volume}",
     "rotate": 0,
-    "format-muted": "婢 [{volume}]",
+    "format-muted": " [{volume}]",
     "on-click": "pavucontrol -t 3",
     "on-click-right": "volume_control.sh -s ''",
     "on-click-middle": "volume_control.sh -o m",
@@ -92,7 +92,7 @@
 "pulseaudio#microphone": {
     "format": "{format_source} {source_volume}",
     "rotate": 0,
-    "format-source": "",
+    "format-source": "",
     "format-source-muted": " ",
     "on-click": "pavucontrol -t 4",
     "on-click-middle": "volume_control.sh -i m",
@@ -199,7 +199,7 @@
 {
 // sourced from header module //
 
-    "layer": "top",
+    "layer": "bottom",
     "name": "top",
     "output": [ "*" ],
     "position": "top",
@@ -209,13 +209,22 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
-    "modules-left": ["custom/padd", "custom/l_end", "custom/power", "custom/r_end", "custom/l_end", "cpu", "memory", "custom/cpuinfo", "custom/gpuinfo", "battery", "custom/r_end", "custom/padd"],
+    "modules-left": ["custom/padd", "custom/l_end", "custom/power#arch", "custom/r_end", "custom/l_end", "cpu", "memory", "custom/cpuinfo", "custom/gpuinfo", "battery", "custom/r_end", "custom/padd"],
 	  "modules-center": ["custom/padd", "custom/rl_end", "hyprland/workspaces#all_persistent", "custom/rr_end", "custom/padd"],
 	  "modules-right": ["custom/padd", "custom/l_end", "idle_inhibitor", "clock#seconds_date", "custom/r_end", "custom/l_end", "hyprland/language", "custom/r_end", "custom/padd"],
         "custom/power": {
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo  logout",
+        "on-click": "logout_launch.sh 2",
+        "on-click-right": "logout_launch.sh 1",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+    "custom/power#arch": {
+        "format": "󰣇{}",
+        "rotate": 0,
+        "exec": "echo ; echo 󰣇 logout",
         "on-click": "logout_launch.sh 2",
         "on-click-right": "logout_launch.sh 1",
         "interval" : 86400, // once every day

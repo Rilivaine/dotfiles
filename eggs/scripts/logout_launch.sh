@@ -49,7 +49,7 @@ esac
 export fntSize=$(( y_mon * 2 / 100 ))
 
 #// eval hypr border radius
-hypr_border=12
+hypr_border="$(hyprctl -j getoption decoration:rounding | jq ".int")"
 
 export active_rad=$(( hypr_border * 5 ))
 export button_rad=$(( hypr_border * 8 ))

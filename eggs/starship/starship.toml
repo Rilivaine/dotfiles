@@ -11,4 +11,4 @@ show_milliseconds = true
 format = "[$duration]($style)"
 
 [directory]
-read_only = " "
+read_only = " 󰌾"
