@@ -3,7 +3,7 @@
 {
 // sourced from header module //
 
-    "layer": "top",
+    "layer": "bottom",
     "name": "bottom",
     "output": [ "*" ],
     "position": "bottom",
@@ -199,7 +199,7 @@
 {
 // sourced from header module //
 
-    "layer": "top",
+    "layer": "bottom",
     "name": "top",
     "output": [ "*" ],
     "position": "top",

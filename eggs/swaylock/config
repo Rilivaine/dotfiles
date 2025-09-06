@@ -1,15 +1,15 @@
 # main settings 
 daemonize
-clock
-screenshot
+# clock
+# screenshot
 ignore-empty-password
-indicator
-grace-no-mouse
+# indicator
+# grace-no-mouse
 
 # screen effects
-effect-blur=15x15
-effect-vignette=1:1
-color=00000080
+# effect-blur=15x15
+# effect-vignette=1:1
+color=00000020
 grace=3
 fade-in=0.3
 
