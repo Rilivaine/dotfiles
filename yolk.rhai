@@ -1,9 +1,12 @@
 export let eggs = #{
     hypr: #{
-        targets: "~/.config/hypr",
+      targets: "~/.config/hypr",
     },
     waybar: #{
 	    targets: "~/.config/waybar",
+    },
+    walker: #{
+      targets: "~/.config/walker",
     },
     rofi: #{
     	targets: "~/.config/rofi",
@@ -44,14 +47,24 @@ export let eggs = #{
     	targets: "~/.config/nvim", 
     },
     scripts: #{
-        targets: "~/.dotscripts",
+      targets: "~/.dotscripts",
     },
     global_config: #{
-        targets: #{
-            "kdeglobals": "~/.config/kdeglobals",
-        },
+      targets: #{
+        "kdeglobals": "~/.config/kdeglobals",
+        "pacman.conf": "/etc/pacman.conf",
+      },
     },
     menus: #{
-        targets: "~/.config/menus",
+      targets: "~/.config/menus",
+    },
+    paru: #{
+      targets: "~/.config/paru"
+    },
+    themes: #{
+      targets: "~/.themes"
+    },
+    btop: #{
+      targets: "~/.config/btop"
     }
 };
