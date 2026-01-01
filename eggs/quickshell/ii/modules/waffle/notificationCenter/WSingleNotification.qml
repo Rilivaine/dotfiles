@@ -15,9 +15,6 @@ MouseArea {
     required property var notification
     property bool expanded: notification.actions.length > 0
     property string groupExpandControlMessage: ""
-
-    readonly property bool isPopup: notification?.popup ?? false
-
     signal groupExpandToggle
     hoverEnabled: true
 
@@ -59,13 +56,13 @@ MouseArea {
     Rectangle {
         id: contentItem
         width: parent.width
-        color: root.isPopup ? Looks.colors.bg0 : Looks.colors.bgPanelBody
-        radius: root.isPopup ? Looks.radius.large : Looks.radius.medium
+        color: Looks.colors.bgPanelBody
+        radius: Looks.radius.medium
         property real padding: 12
         implicitHeight: notificationContent.implicitHeight + padding * 2
         implicitWidth: notificationContent.implicitWidth + padding * 2
         border.width: 1
-        border.color: root.isPopup ? Looks.colors.bg2Border : Looks.colors.bgPanelSeparator
+        border.color: ColorUtils.applyAlpha(Looks.colors.ambientShadow, 0.1)
 
         Behavior on x {
             animation: Looks.transition.enter.createObject(this)
@@ -160,9 +157,9 @@ MouseArea {
 
         NotificationHeaderButton {
             Layout.rightMargin: 4
-            opacity: (root.containsMouse || root.isPopup) ? 1 : 0
+            opacity: root.containsMouse ? 1 : 0
             icon.name: "dismiss"
-            implicitSize: 14
+            implicitSize: 12
             onClicked: root.dismiss()
         }
     }

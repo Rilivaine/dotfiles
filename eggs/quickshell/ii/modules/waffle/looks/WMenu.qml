@@ -76,9 +76,8 @@ Menu {
     contentItem: Item {
         implicitWidth: menuListView.implicitWidth
         implicitHeight: menuListView.implicitHeight
-        WListView {
+        ListView {
             id: menuListView
-            interactive: contentHeight > height
             anchors {
                 left: parent.left
                 right: parent.right
@@ -88,7 +87,6 @@ Menu {
                 topMargin: root.downDirection ? root.sourceEdgeMargin : root.margins
                 bottomMargin: root.downDirection ? root.margins : root.sourceEdgeMargin
             }
-            clip: true
             implicitHeight: contentHeight
             implicitWidth: Array.from({
                 length: count

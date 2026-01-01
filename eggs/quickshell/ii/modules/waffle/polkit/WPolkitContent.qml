@@ -135,7 +135,7 @@ Rectangle {
             }
             BodyRectangle {
                 implicitHeight: 80
-                color: Looks.colors.bgPanelFooterBackground
+                color: Looks.colors.bgPanelFooterBase
                 RowLayout {
                     anchors.fill: parent
                     anchors.margins: 24

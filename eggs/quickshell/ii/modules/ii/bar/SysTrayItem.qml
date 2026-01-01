@@ -17,16 +17,19 @@ MouseArea {
     signal menuClosed()
 
     hoverEnabled: true
-    acceptedButtons: Qt.LeftButton | Qt.RightButton
+    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     implicitWidth: 20
     implicitHeight: 20
     onPressed: (event) => {
         switch (event.button) {
-        case Qt.LeftButton:
+          case Qt.LeftButton:
             item.activate();
             break;
-        case Qt.RightButton:
+          case Qt.RightButton:
             if (item.hasMenu) menu.open();
+            break;
+          case Qt.MiddleButton:
+            TrayService.togglePin(item.id);
             break;
         }
         event.accepted = true;
@@ -58,6 +61,7 @@ MouseArea {
                 root.menuClosed();
                 menu.active = false;
             }
+            
         }
     }
 

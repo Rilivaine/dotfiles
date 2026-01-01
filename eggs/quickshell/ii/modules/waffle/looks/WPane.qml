@@ -12,7 +12,6 @@ Item {
     id: root
     property Item contentItem
     property real radius: Looks.radius.large
-    property alias color: contentRect.color
     property alias border: borderRect
     property alias borderColor: borderRect.border.color
     property alias borderWidth: borderRect.border.width
@@ -43,7 +42,7 @@ Item {
         anchors.centerIn: parent
         z: 0
         
-        color: Looks.colors.bgPanelFooterBackground
+        color: Looks.colors.bgPanelFooterBase
         implicitWidth: contentItem.implicitWidth
         implicitHeight: contentItem.implicitHeight
         layer.enabled: true

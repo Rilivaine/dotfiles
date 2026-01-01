@@ -186,7 +186,7 @@ Singleton {
                     verb: "",
                     type: type,
                     execute: () => {
-                        Cliphist.copy(entry);
+                        Cliphist.paste(entry);
                     },
                     actions: [resultComp.createObject(null, {
                             name: Translation.tr("Copy"),

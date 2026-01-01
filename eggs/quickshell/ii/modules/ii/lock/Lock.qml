@@ -6,6 +6,8 @@ import qs.modules.common.functions
 import qs.modules.common.panels.lock
 import QtQuick
 import Quickshell
+import Quickshell.Io
+import Quickshell.Wayland
 import Quickshell.Hyprland
 
 LockScreen {
@@ -16,7 +18,24 @@ LockScreen {
     }
 
     // Push everything down
-    property var lastWorkspaceId: 1
+    property var windowData: []
+    function saveWindowPositionAndTile() {
+        Quickshell.execDetached(["hyprctl", "keyword", "dwindle:pseudotile", "true"]);
+        root.windowData = HyprlandData.windowList.filter(w => (w.floating && w.workspace.id === HyprlandData.activeWorkspace.id));
+        root.windowData.forEach(w => {
+            Hyprland.dispatch(`pseudo address:${w.address}`);
+            Hyprland.dispatch(`settiled address:${w.address}`);
+            Hyprland.dispatch(`movetoworkspacesilent ${w.workspace.id},address:${w.address}`);
+        });
+    }
+    function restoreWindowPositionAndTile() {
+        root.windowData.forEach(w => {
+            Hyprland.dispatch(`setfloating address:${w.address}`);
+            Hyprland.dispatch(`movewindowpixel exact ${w.at[0]} ${w.at[1]}, address:${w.address}`);
+            Hyprland.dispatch(`pseudo address:${w.address}`);
+        });
+        Quickshell.execDetached(["hyprctl", "keyword", "dwindle:pseudotile", "false"]);
+    }
     Variants {
         model: Quickshell.screens
         delegate: Scope {
@@ -27,11 +46,11 @@ LockScreen {
             property int horizontalSqueeze: modelData.width * 0.2
             onShouldPushChanged: {
                 if (shouldPush) {
-                    root.lastWorkspaceId = HyprlandData.activeWorkspace.id;
-                    // Set anim to vertical and move to very very big workspace for a sliding up effect
-                    Quickshell.execDetached(["hyprctl", "--batch", "keyword animation workspaces,1,7,menu_decel,slidevert; dispatch workspace 2147483647"]);
+                    root.saveWindowPositionAndTile();
+                    Quickshell.execDetached(["bash", "-c", `hyprctl keyword monitor ${targetMonitorName}, addreserved, ${verticalMovementDistance}, ${-verticalMovementDistance}, ${horizontalSqueeze}, ${horizontalSqueeze}`]);
                 } else {
-                    Quickshell.execDetached(["hyprctl", "--batch", `dispatch workspace ${root.lastWorkspaceId}; reload`]);
+                    Quickshell.execDetached(["bash", "-c", `hyprctl keyword monitor ${targetMonitorName}, addreserved, 0, 0, 0, 0`]);
+                    root.restoreWindowPositionAndTile();
                 }
             }
         }

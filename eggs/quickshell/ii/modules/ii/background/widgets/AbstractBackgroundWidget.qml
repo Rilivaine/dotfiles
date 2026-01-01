@@ -59,8 +59,7 @@ AbstractWidget {
         function onReadyChanged() { refreshPlacementIfNeeded() }
     }
     function refreshPlacementIfNeeded() {
-        if (!Config.ready) return;
-        if (root.placementStrategy === "free" && !root.needsColText) return;
+        if (!Config.ready || (root.placementStrategy === "free" && root.needsColText)) return;
         leastBusyRegionProc.wallpaperPath = root.wallpaperPath;
         leastBusyRegionProc.running = false;
         leastBusyRegionProc.running = true;
