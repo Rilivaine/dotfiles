@@ -9,6 +9,7 @@ alias dmg="sudo dmesg --color=always | less +G -R"
 alias c="clear"
 alias vencord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"' 
 alias myip='echo "$(curl -s ifconfig.me)"'
+alias cdconf='cd ~/.config/'
 
 # eza
 alias ls='eza --icons --group-directories-first -F --hyperlink'

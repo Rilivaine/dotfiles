@@ -22,10 +22,6 @@ Scope {
             sourceUrl: "indicators/VolumeIndicator.qml"
         },
         {
-            id: "media",
-            sourceUrl: "indicators/MediaIndicator.qml"
-        },
-        {
             id: "brightness",
             sourceUrl: "indicators/BrightnessIndicator.qml"
         },
@@ -69,22 +65,6 @@ Scope {
             if (!Audio.ready)
                 return;
             root.currentIndicator = "volume";
-            root.triggerOsd();
-        }
-    }
-
-    Connections {
-        // Listen to volume changes
-        target: Media.activePlayer ?? null;
-
-        function onPostTrackChanged() {
-          console.log("onPostTrackChanged");
-            root.currentIndicator = "media";
-            root.triggerOsd();
-        }
-
-        function onTrackChanged() {
-            root.currentIndicator = "media";
             root.triggerOsd();
         }
     }

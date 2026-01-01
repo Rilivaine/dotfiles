@@ -26,17 +26,6 @@ Item {
         onTriggered: activePlayer.positionChanged()
     }
 
-        // Scroll to switch workspaces
-    WheelHandler {
-        onWheel: (event) => {
-            if (event.angleDelta.y < 0)
-                activePlayer.volume -= 0.02;
-            else if (event.angleDelta.y > 0)
-                activePlayer.volume += 0.02;
-        }
-        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-    }
-
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton

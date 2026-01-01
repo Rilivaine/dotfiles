@@ -17,6 +17,9 @@ export let eggs = #{
     swaync: #{
     	targets: "~/.config/swaync",
     },
+    quickshell: #{
+        targets: "~/.config/quickshell",
+    },
     eww: #{
     	targets: "~/.config/eww",
     },
