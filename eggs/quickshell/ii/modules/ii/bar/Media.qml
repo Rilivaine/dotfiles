@@ -26,17 +26,6 @@ Item {
         onTriggered: activePlayer.positionChanged()
     }
 
-        // Scroll to switch workspaces
-    WheelHandler {
-        onWheel: (event) => {
-            if (event.angleDelta.y < 0)
-                MprisController.setVolume(activePlayer.volume - 0.02);
-            else if (event.angleDelta.y > 0)
-                MprisController.setVolume(activePlayer.volume + 0.02);
-        }
-        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-    }
-
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
@@ -92,7 +81,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight // Truncates the text on the right
             color: Appearance.colors.colOnLayer1
-            text: activePlayer?.trackArtist ? `${activePlayer.trackArtist} • ${cleanedTitle}` : cleanedTitle
+            text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
         }
 
     }

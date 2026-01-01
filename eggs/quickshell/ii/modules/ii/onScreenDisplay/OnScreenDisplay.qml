@@ -22,20 +22,8 @@ Scope {
             sourceUrl: "indicators/VolumeIndicator.qml"
         },
         {
-            id: "mprisVolume",
-            sourceUrl: "indicators/MprisVolumeIndicator.qml"
-        },
-        {
-            id: "mprisTrack",
-            sourceUrl: "indicators/MprisTrackIndicator.qml"
-        },
-        {
             id: "brightness",
             sourceUrl: "indicators/BrightnessIndicator.qml"
-        },
-        {
-            id: "xkb",
-            sourceUrl: "indicators/XkbIndicator.qml"
         },
     ]
 
@@ -82,35 +70,11 @@ Scope {
     }
 
     Connections {
-        // Listen to volume changes
-        target: MprisController ?? null;
-
-        function onTrackChanged() {
-            root.currentIndicator = "mprisTrack";
-            root.triggerOsd();
-        }
-
-        function onVolumeChanged() {
-            root.currentIndicator = "mprisVolume";
-            root.triggerOsd();
-        }
-    }
-
-    Connections {
         // Listen to protection triggers
         target: Audio
         function onSinkProtectionTriggered(reason) {
             root.protectionMessage = reason;
             root.currentIndicator = "volume";
-            root.triggerOsd();
-        }
-    }
-
-    Connections {
-        // Listen to protection triggers
-        target: HyprlandXkb
-        function onCurrentLayoutNameChanged() {
-            root.currentIndicator = "xkb";
             root.triggerOsd();
         }
     }

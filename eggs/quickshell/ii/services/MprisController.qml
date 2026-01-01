@@ -20,7 +20,6 @@ Singleton {
 	property MprisPlayer trackedPlayer: null;
 	property MprisPlayer activePlayer: trackedPlayer ?? Mpris.players.values[0] ?? null;
 	signal trackChanged(reverse: bool);
-  signal volumeChanged();
 
 	property bool __reverse: false;
 
@@ -71,8 +70,8 @@ Singleton {
 						}
 					}
 
-					if (root.trackedPlayer == null && Mpris.players.values.length != 0) {
-						root.trackedPlayer = Mpris.players.values[0];
+					if (trackedPlayer == null && Mpris.players.values.length != 0) {
+						trackedPlayer = Mpris.players.values[0];
 					}
 				}
 			}
@@ -84,7 +83,7 @@ Singleton {
 	}
 
 	Connections {
-		target: root.activePlayer
+		target: activePlayer
 
 		function onPostTrackChanged() {
 			root.updateTrack();
@@ -144,13 +143,6 @@ Singleton {
 
 	property bool canChangeVolume: this.activePlayer && this.activePlayer.volumeSupported && this.activePlayer.canControl;
 
-  function setVolume(volume: var) {
-    if (this.canChangeVolume) {
-      this.activePlayer.volume = Math.min(Math.max(volume, 0), 1);
-      this.volumeChanged();
-    }
-  }
-
 	property bool loopSupported: this.activePlayer && this.activePlayer.loopSupported && this.activePlayer.canControl;
 	property var loopState: this.activePlayer?.loopState ?? MprisLoopState.None;
 	function setLoopState(loopState: var) {
@@ -193,6 +185,5 @@ Singleton {
 		function playPause(): void { root.togglePlaying(); }
 		function previous(): void { root.previous(); }
 		function next(): void { root.next(); }
-    function setVolume(volume: var): void { root.setVolume(volume); }
 	}
 }

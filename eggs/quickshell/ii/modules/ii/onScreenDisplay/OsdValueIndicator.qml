@@ -6,7 +6,7 @@ import Quickshell.Widgets
 
 Item {
     id: root
-    property real value: -1
+    required property real value
     required property string icon
     required property string name
     property bool rotateIcon: false
@@ -16,8 +16,7 @@ Item {
     property real valueIndicatorLeftPadding: 10
     property real valueIndicatorRightPadding: 20 // An icon is circle ish, a column isn't, hence the extra padding
 
-
-    implicitWidth: valueIndicator.implicitWidth + 2 * Appearance.sizes.elevationMargin
+    implicitWidth: Appearance.sizes.osdWidth + 2 * Appearance.sizes.elevationMargin
     implicitHeight: valueIndicator.implicitHeight + 2 * Appearance.sizes.elevationMargin
 
     StyledRectangularShadow {
@@ -87,7 +86,6 @@ Item {
                     }
 
                     StyledText {
-                        visible: root.value >= 0
                         color: Appearance.colors.colOnLayer0
                         font.pixelSize: Appearance.font.pixelSize.small
                         Layout.fillWidth: false
@@ -96,7 +94,6 @@ Item {
                 }
                 
                 StyledProgressBar {
-                    visible: root.value >= 0
                     id: valueProgressBar
                     Layout.fillWidth: true
                     value: root.value
