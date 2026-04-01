@@ -1,4 +1,3 @@
-# recommended shell behavior
 setopt AUTO_CD
 setopt PUSHD_IGNORE_DUPS
 setopt EXTENDED_GLOB
@@ -6,3 +5,10 @@ setopt NO_CASE_GLOB
 setopt CORRECT
 setopt INTERACTIVE_COMMENTS
 
+# history tweaks
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+HISTIGNORE="source /usr/share/cursor/*"
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE

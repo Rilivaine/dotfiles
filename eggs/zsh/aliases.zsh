@@ -5,6 +5,7 @@ alias yolkrc="e ~/.config/yolk/"
 alias nvimrc="e ~/.config/nvim/"
 alias zrc="e ~/.config/zsh/ ; exec zsh"
 alias up="paru -Syu"
+alias rns="paru -Rns"
 alias dmg="sudo dmesg --color=always | less +G -R"
 alias c="clear"
 alias vencord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"' 
@@ -169,4 +170,4 @@ alias ghead='git rev-parse HEAD'
 alias gbr='git branch --remote'
 alias gtags='git tag -l'
 alias gshow='git show'
-alias gwhatchanged='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gwhatchanged='git log -p --abbrev-commit --pretty=medium --raw --no-merges'

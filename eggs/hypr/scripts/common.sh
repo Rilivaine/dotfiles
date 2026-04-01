@@ -1,1 +1,0 @@
-/home/deo/.config/yolk/eggs/scripts/common.sh

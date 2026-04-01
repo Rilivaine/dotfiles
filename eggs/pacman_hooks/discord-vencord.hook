@@ -1,9 +1,0 @@
-[Trigger]
-Operation = Upgrade
-Type = Package
-Target = discord
-
-[Action]
-Description = Reinstall/Update Vencord after Discord upgrade
-When = PostTransaction
-Exec = /usr/bin/sudo -u "deo" /home/"deo"/.dotscripts/install_vencord.sh # {< replace_re(`/".*?"/g`, `"{SYSTEM.username}"`) >}
