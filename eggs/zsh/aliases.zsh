@@ -8,10 +8,11 @@ alias up="paru -Syu"
 alias rns="paru -Rns"
 alias dmg="sudo dmesg --color=always | less +G -R"
 alias c="clear"
-alias vencord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"' 
 alias myip='echo "$(curl -s ifconfig.me)"'
 alias cdconf='cd ~/.config/'
 alias serve='pnpm dlx serve'
+alias "?"="whence -f"
+alias "??"="type -a"
 
 # eza
 alias ls='eza --icons --group-directories-first -F --hyperlink'
@@ -26,7 +27,6 @@ alias fdf='fd --type f'         # files only
 alias fdd='fd --type d'        # dirs only
 
 alias mkdir='mkdir -p'
-alias h='history'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -37,6 +37,33 @@ runbg() {
     return 1
   fi
   "$@" > /dev/null 2>&1 & disown
+}
+
+# interactive fuzzy search; Enter puts command on the line for editing
+hs() {
+  local line cmd
+  line=$(fc -ln 1 | fzf --tac --no-sort --height=80% --border --query="${1:-}") || return 1
+  cmd="${line#[[:space:]]#[0-9]##[[:space:]]#}"
+  print -z "$cmd"
+}
+
+# grep through history (non-interactive)
+hg() {
+  if (( $# == 0 )); then
+    echo "Usage: hg <pattern>"
+    return 1
+  fi
+  fc -l 1 | rg -i -- "$@"
+}
+
+# clear session + on-disk history
+hc() {
+  read -q "REPLY?Clear all shell history? [y/N] "
+  echo
+  [[ $REPLY != [yY] ]] && return 0
+  history -p
+  : >| "${HISTFILE:-$HOME/.histfile}"
+  echo "History cleared."
 }
 
 ###########
@@ -172,3 +199,11 @@ alias gbr='git branch --remote'
 alias gtags='git tag -l'
 alias gshow='git show'
 alias gwhatchanged='git log -p --abbrev-commit --pretty=medium --raw --no-merges'
+
+GBRA() {
+  gbr --show-current 2>/dev/null
+}
+
+GREM() {
+  g config --get branch.$(GIT_BRANCH).remote 2>/dev/null
+}
