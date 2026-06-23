@@ -27,9 +27,11 @@ alias fdf='fd --type f'         # files only
 alias fdd='fd --type d'        # dirs only
 
 alias mkdir='mkdir -p'
+alias cd='z'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias -- -='cd -'
 
 runbg() {
   if [ $# -eq 0 ]; then
@@ -43,7 +45,7 @@ runbg() {
 hs() {
   local line cmd
   line=$(fc -ln 1 | fzf --tac --no-sort --height=80% --border --query="${1:-}") || return 1
-  cmd="${line#[[:space:]]#[0-9]##[[:space:]]#}"
+  cmd=$(print -r -- "$line" | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//')
   print -z "$cmd"
 }
 
@@ -61,8 +63,9 @@ hc() {
   read -q "REPLY?Clear all shell history? [y/N] "
   echo
   [[ $REPLY != [yY] ]] && return 0
-  history -p
+  history -c
   : >| "${HISTFILE:-$HOME/.histfile}"
+  fc -W
   echo "History cleared."
 }
 
@@ -82,6 +85,9 @@ alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gbrn='git branch -m' # rename branch
+
+# interactive branch delete (gum)
+gbx() { ~/.dotscripts/gbx.sh "$@"; }
 alias gbl='git blame -b -w'
 alias gbs='git bisect'
 alias gbsb='git bisect bad'
